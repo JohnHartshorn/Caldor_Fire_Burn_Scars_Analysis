@@ -136,11 +136,11 @@ Higher dNBR values indicate greater burn severity.
 
 ### Pre-Fire True Color Image
 
-![Before Fire](maps/True_Color_Before.jpeg)
+![Before Fire](Maps/True_Color_Before.jpeg)
 
 ### Post-Fire True Color Image
 
-![After Fire](maps/True_Color_After.jpeg)
+![After Fire](Maps/True_Color_After.jpeg)
 
 ---
 
@@ -148,11 +148,11 @@ Higher dNBR values indicate greater burn severity.
 
 ### Pre-Fire Classification
 
-![RF Before](maps/Random_fc_before.jpeg)
+![RF Before](Maps/Random_fc_before.jpeg)
 
 ### Post-Fire Classification
 
-![RF After](maps/Random_fc_After.jpeg)
+![RF After](Maps/Random_fc_After.jpeg)
 
 ---
 
@@ -160,7 +160,7 @@ Higher dNBR values indicate greater burn severity.
 
 The difference in normalized burn ratio highlights areas where vegetation was destroyed by the wildfire.
 
-![Burn Severity](maps/IMG_0294.jpeg)
+![Burn Severity](Maps/Dnbr_burn_severity.jpeg)
 
 ---
 
