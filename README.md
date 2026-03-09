@@ -152,7 +152,7 @@ Higher dNBR values indicate greater burn severity.
 
 ### Post-Fire Classification
 
-![RF After](Maps/Random_fc_After.jpeg)
+![RF After](Maps/Random_fc_after.jpeg)
 
 ---
 
