@@ -1,0 +1,765 @@
+//JavaScript code for Google Earth Engine
+
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+
+var Water = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.0476577758789, 38.95368878200568],
+                  [-120.04250793457031, 38.95395576794496],
+                  [-120.0418212890625, 38.95689254689444],
+                  [-120.04868774414062, 38.95689254689444]]]),
+            {
+              "class": 1,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.06619720458984, 38.90240884876814],
+                  [-120.06173400878906, 38.902542438400786],
+                  [-120.06104736328125, 38.90561493057837],
+                  [-120.06345062255859, 38.90628284606559]]]),
+            {
+              "class": 1,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.3479793548584, 38.82622186247088],
+                  [-120.3465202331543, 38.825820662380046],
+                  [-120.34591941833496, 38.826823658368056],
+                  [-120.34746437072754, 38.82755917977863]]]),
+            {
+              "class": 1,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.11838226318359, 38.66303859342193],
+                  [-120.11623649597168, 38.66317263226532],
+                  [-120.11589317321777, 38.66451300690063],
+                  [-120.11795310974121, 38.664714060932]]]),
+            {
+              "class": 1,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.2491024017334, 38.54257047290479],
+                  [-120.2465274810791, 38.541697750576134],
+                  [-120.24609832763672, 38.54283900072156],
+                  [-120.24790077209472, 38.54391310196262]]]),
+            {
+              "class": 1,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.19022254943847, 38.497785030857884],
+                  [-120.18833427429199, 38.497785030857884],
+                  [-120.18781929016113, 38.498523939554765],
+                  [-120.19013671875, 38.49912849557826]]]),
+            {
+              "class": 1,
+              "system:index": "5"
+            })]),
+    Urban = /* color: #98ff00 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.01579992362424, 38.931567531399274],
+                  [-120.01419059821531, 38.931584223257126],
+                  [-120.01427642890378, 38.93260241915879],
+                  [-120.01573555060789, 38.93280271827134]]]),
+            {
+              "class": 2,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.99687521955843, 38.88960623720372],
+                  [-119.99644606611605, 38.8895060267506],
+                  [-119.99530880949374, 38.89359783861303],
+                  [-119.99565213224764, 38.89364794097091]]]),
+            {
+              "class": 2,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.99751894972201, 38.89453307679862],
+                  [-119.9981841375577, 38.89244547462738],
+                  [-119.99751894972201, 38.89239537142126],
+                  [-119.99676793119784, 38.89443287329637]]]),
+            {
+              "class": 2,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.94220049803077, 38.960871495176164],
+                  [-119.94396002714454, 38.95803499497389],
+                  [-119.94170697157203, 38.95720070859895],
+                  [-119.94022639219581, 38.96005392735374]]]),
+            {
+              "class": 2,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.94531186048805, 38.95473116336207],
+                  [-119.94323046629249, 38.953696598564036],
+                  [-119.94194300596534, 38.95519838122369],
+                  [-119.94415314619361, 38.956082749456925]]]),
+            {
+              "class": 2,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.96563227598487, 38.94587012725053],
+                  [-119.96466668073951, 38.946237273154175],
+                  [-119.96489198629676, 38.946737923594775],
+                  [-119.96607215826332, 38.946379124471314]]]),
+            {
+              "class": 2,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.98024111919709, 38.93006406342801],
+                  [-119.98089557819672, 38.929413064108395],
+                  [-119.98075610332795, 38.929354640800355],
+                  [-119.9801338308365, 38.9299138333461]]]),
+            {
+              "class": 2,
+              "system:index": "6"
+            })]),
+    Forest = /* color: #0b4a8b */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.96137633231695, 38.88729838660609],
+                  [-119.9575139513355, 38.883556978932],
+                  [-119.95279326346929, 38.88529408556994]]]),
+            {
+              "class": 3,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.91605209381112, 38.752620409751735],
+                  [-119.91716789276131, 38.751482496076804],
+                  [-119.91489337951668, 38.7498759988318],
+                  [-119.91343425781258, 38.750779657980566]]]),
+            {
+              "class": 3,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.00913547546395, 38.73056173402493],
+                  [-120.00793384582528, 38.72965781900469],
+                  [-120.0063888934327, 38.72999260367905],
+                  [-120.00733303100594, 38.73116433768451]]]),
+            {
+              "class": 3,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.1287145745352, 38.76996062278507],
+                  [-120.12390805598051, 38.7675514872372],
+                  [-120.12339307184965, 38.769692945075064],
+                  [-120.1261396538809, 38.77223584276795]]]),
+            {
+              "class": 3,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.11292172785551, 38.773038844259496],
+                  [-120.10948850031644, 38.77156666795301],
+                  [-120.10639859553129, 38.772771178100065],
+                  [-120.11103345270902, 38.774644820123505]]]),
+            {
+              "class": 3,
+              "system:index": "4"
+            })]),
+    CutForest = /* color: #ffc82d */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.49411267655357, 38.5350866056728],
+                  [-120.4940268458651, 38.53384452225721],
+                  [-120.49222440140709, 38.53491875781575]]]),
+            {
+              "class": 4,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.46900720017418, 38.535690854715625],
+                  [-120.46754807847007, 38.537167886564745],
+                  [-120.46793431656822, 38.53757070816933],
+                  [-120.46999425309166, 38.536227960715124]]]),
+            {
+              "class": 4,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.45175523179039, 38.51967654032287],
+                  [-120.45046777146324, 38.5175275980475],
+                  [-120.4498669566439, 38.52058310610377]]]),
+            {
+              "class": 4,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.4584151902984, 38.900643304238095],
+                  [-120.45815769823297, 38.89840558488645],
+                  [-120.45605484636529, 38.8997749439074]]]),
+            {
+              "class": 4,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.47060314806207, 38.88918677355592],
+                  [-120.46961609514459, 38.89085693682406],
+                  [-120.47279183061822, 38.89102395099101]]]),
+            {
+              "class": 4,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.45626942308648, 38.88534524901188],
+                  [-120.45669857652886, 38.88661464531968],
+                  [-120.45828644426568, 38.886113570539294]]]),
+            {
+              "class": 4,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.45335500579766, 38.93016718924356],
+                  [-120.45410602432183, 38.93083487367617],
+                  [-120.45605867248467, 38.93016718924356]]]),
+            {
+              "class": 4,
+              "system:index": "6"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.37207280138989, 38.92752935231917],
+                  [-120.37224446276684, 38.9262273011803],
+                  [-120.37057076434155, 38.927228881100596],
+                  [-120.37082825640698, 38.92839737313481],
+                  [-120.37288819293042, 38.92823044687978]]]),
+            {
+              "class": 4,
+              "system:index": "7"
+            })]),
+    BareSoil = /* color: #00ffff */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.86608176261984, 38.707063956984726],
+                  [-119.8636785033425, 38.704686189135614],
+                  [-119.86213355094992, 38.70565739964071],
+                  [-119.86397891075217, 38.708068623861145]]]),
+            {
+              "class": 5,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.85642581016623, 38.71443118623613],
+                  [-119.85376505882346, 38.71309174647979],
+                  [-119.85230593711935, 38.71389541334544],
+                  [-119.85453753501974, 38.715368779131765],
+                  [-119.85702662498556, 38.71456512883134]]]),
+            {
+              "class": 5,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.18207364530711, 38.9515356202758],
+                  [-120.1850777194038, 38.95080138145098],
+                  [-120.18447690458446, 38.949666633760884],
+                  [-120.18181615324168, 38.950234009876745]]]),
+            {
+              "class": 5,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.18863969297557, 38.94980013443204],
+                  [-120.18692307920604, 38.95000038496731],
+                  [-120.18662267179637, 38.951635743162605],
+                  [-120.18988423795848, 38.95106837826733]]]),
+            {
+              "class": 5,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.3821383299486, 38.887067943260156],
+                  [-120.38138731142443, 38.885865365523166],
+                  [-120.37962778231066, 38.886550169230055],
+                  [-120.38037880083483, 38.88733517999275]]]),
+            {
+              "class": 5,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.39623602053088, 38.87970183511793],
+                  [-120.39548500200671, 38.879384457289774],
+                  [-120.3950343908922, 38.8799523955599],
+                  [-120.39582832476061, 38.880219659057516]]]),
+            {
+              "class": 5,
+              "system:index": "5"
+            })]),
+    BurnScars = /* color: #bf04c2 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.44722384499667, 38.633280933916275],
+                  [-120.44430560158847, 38.63676731002958],
+                  [-120.446022215358, 38.638778603732426],
+                  [-120.4518587021744, 38.634219590319425]]]),
+            {
+              "class": 6,
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.42130297707675, 38.68274478089482],
+                  [-120.413063230983, 38.6834147881373],
+                  [-120.41374987649081, 38.68663073557769],
+                  [-120.42044467019198, 38.68636274547816]]]),
+            {
+              "class": 6,
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.4405290512955, 38.66585852757448],
+                  [-120.43572253274081, 38.669879425385645],
+                  [-120.4408723740494, 38.672827940265286],
+                  [-120.44533556985019, 38.668405122407044]]]),
+            {
+              "class": 6,
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.28586215066073, 38.658352247514436],
+                  [-120.28088397072909, 38.65781605454703],
+                  [-120.27916735695956, 38.660899109292416],
+                  [-120.2841455368912, 38.66183740395925]]]),
+            {
+              "class": 6,
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.08278674172519, 38.81902882742695],
+                  [-120.07815188454745, 38.82076751066491],
+                  [-120.07901019143222, 38.82263989129152],
+                  [-120.08467501687167, 38.82009879136649]]]),
+            {
+              "class": 6,
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.11660403298495, 38.78090087520499],
+                  [-120.12158221291659, 38.77996414251856],
+                  [-120.11969393777011, 38.77728769561343],
+                  [-120.11626071023105, 38.77849210915086]]]),
+            {
+              "class": 6,
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-119.96416873025058, 38.857959121378585],
+                  [-119.96022051858066, 38.85622134658695],
+                  [-119.9574739365494, 38.85822646757755],
+                  [-119.96107882546542, 38.86009786282838]]]),
+            {
+              "class": 6,
+              "system:index": "6"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.24380511330722, 38.740229311680565],
+                  [-120.23796862649081, 38.74130045856948],
+                  [-120.23814028786776, 38.74330881568155],
+                  [-120.24449175881503, 38.74210380819248]]]),
+            {
+              "class": 6,
+              "system:index": "7"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.33804720925448, 38.701657324430464],
+                  [-120.33255404519198, 38.7036667960021],
+                  [-120.3332406906998, 38.705140372599644],
+                  [-120.34010714577792, 38.70299697841905]]]),
+            {
+              "class": 6,
+              "system:index": "8"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-120.44018572854159, 38.64925718166751],
+                  [-120.43280428933261, 38.64925718166751],
+                  [-120.43297595070956, 38.652340604803264],
+                  [-120.43881243752597, 38.65247466366836]]]),
+            {
+              "class": 6,
+              "system:index": "9"
+            })]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+/// Center the map over the location of the Caldera Fire
+Map.setCenter(-120.3, 38.7000, 10);
+
+///Define region of interest
+
+var CaldorFire = ee.Geometry.Polygon(
+        [[[-120.64675598144531, 38.95622510781989],
+          [-120.62341003417968, 38.42133838578212],
+          [-119.80080871582031, 38.429945244340935],
+          [-119.89144592285156, 38.97330956860997]]]);
+          
+          
+//
+//
+//
+//
+//Import Landsat Image for 09/06/2021
+//Post fire
+//
+//
+//
+//
+
+var PostFire = ee.Image('LANDSAT/LC09/C02/T1/LC09_043033_20211121')
+    .select("B1","B2","B3","B4","B5", "B6", "B7");
+
+
+/////Select bands to be used
+
+var bands = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6'];
+
+
+print("Post Fire image", PostFire);
+
+//subset PostFire to area of interest
+
+var PostFire = PostFire.clip(CaldorFire);
+
+  
+//display a color composite of Landsat 8 bands 543, stretched between DN 0 and 200 to improve the visualization
+Map.addLayer(PostFire, {bands: ['B4', 'B3', 'B2'], min: 4809, max: 9219}, "Post Fire"); 
+
+Map.addLayer(PostFire, {bands: ['B5', 'B4', 'B3'], min: 3594, max: 11490}, "Post Fire Infrared"); 
+
+
+
+///
+///
+///
+///
+
+//Supervised classifications for BF
+
+///
+///
+///
+
+// Make the training dataset by randomly sampling 1000 pixels from the image
+
+var training = PostFire.sample({
+  region: CaldorFire,
+  scale: 30,
+  numPixels: 1000
+});
+
+//Print and study the variable training:
+
+print("trainingPostFire",training);
+
+
+// Instantiate the clusterer and train it.
+
+var clustererPostFire = ee.Clusterer.wekaKMeans(10).train(training);
+
+
+// Cluster the input using the trained clusterer.
+
+var clusteredPostFire = PostFire.cluster(clustererPostFire);
+print('clusteredPostFire',clusteredPostFire);
+
+
+
+// Display the clusters with a custom palette
+
+Map.addLayer(clusteredPostFire, {palette: ['red', 'DFDBC2', '53B00C','1c9099', '0244BE', '60423F','1c9099', '35432A', '35432A', 'ece2f0'], min:1, max:10}, 'clustered',false);
+
+
+
+
+
+//
+//
+//
+//Classified for BF
+//merge feature collections
+//
+//
+//
+
+
+
+var samplePostFireFC = Water.merge(Urban).merge(Forest).merge(CutForest).merge(BareSoil).merge(BurnScars);
+var trainingPostFireFC = samplePostFireFC;
+
+// Add a column of random numbers to split the training points by 70%/30% 
+
+var samplePostFireFC=samplePostFireFC.randomColumn();
+
+
+var split = 0.7;  // Split the sample 70% training, 30% testing.
+var trainingPostFireFC = samplePostFireFC.filter(ee.Filter.lt('random', split));
+print(trainingPostFireFC,'Training points for classifierPostFireFC');   //points for classifier answer: 569 elements, 1 column
+var validationPostFireFC = samplePostFireFC.filter(ee.Filter.gte('random', split));
+print(validationPostFireFC,'Validation pointsPostFireFC');     
+
+
+// Get the values for all pixels in each polygon in the training.
+
+var trainingPostFire = PostFire.select(bands).sampleRegions({
+
+  // Get the sample from the polygons FeatureCollection.
+
+  collection: trainingPostFireFC,
+
+  // Keep this list of properties from the polygons.
+
+  properties: ['class'],
+
+  // Set the scale to get Landsat pixels in the polygons.
+
+  scale: 30
+});
+print('trainingPostFire', trainingPostFire);
+
+
+//  Train a minimum distance classifier
+
+var MDclassifier = ee.Classifier.minimumDistance("euclidean").train({
+features: trainingPostFire, 
+  classProperty: 'class', 
+  inputProperties: bands
+});
+
+// Classify the input imagery.
+
+var MDclassified = PostFire.select(bands).classify(MDclassifier);
+
+// Display the clusters with random colors. The first three bands of the output image will contain 8-bit R, G and B values, 
+// followed by the band of the clustered image.
+
+Map.addLayer(MDclassified.randomVisualizer(), {}, 'MD clustersPostFire', false);
+
+
+
+/* Train a random forest classifier
+
+ A random forest classifier uses a combination of
+decision tree classifiers where each is generated using a random vector sampled independently
+from the input vector. Each tree casts a unit vote for the most popular class to classify an input
+vector . */
+var RFclassifier = ee.Classifier.smileRandomForest(100) //set the number of trees in random forest to 100
+.train(trainingPostFire, 'class', bands); 
+
+// Classify the input imagery with the Random Forest classifier
+var RFclassified = PostFire.select(bands).classify(RFclassifier);
+
+
+// Display the clusters with random colors. The first three bands of the output image will contain 8-bit R, G and B values, 
+// followed by the band of the clustered image.
+Map.addLayer(RFclassified.randomVisualizer(), {}, 'RF clustersPostFire', false);
+
+//
+//
+//
+//
+
+// Get the values for all pixels in each polygon in the validation.
+var MDvalidation = MDclassified.sampleRegions({
+
+  // Get the sample from the polygons FeatureCollection.
+  collection: validationPostFireFC,
+
+  // Keep this list of properties from the polygons.
+  properties: ['class'],
+
+  // Set the scale to get Landsat pixels in the polygons.
+  scale: 30
+});
+print("MDvalidationPostFire",MDvalidation);
+
+
+// Compare the landcover of your validation data against the classification result
+var MDvalidationAccuracy = MDvalidation.errorMatrix('class', 'classification');
+//Print the error matrix to the console
+print('MD Error matrixPostFire: ', MDvalidationAccuracy);
+//Print the overall accuracy to the console
+print('MD Overall accuracyPostFire: ', MDvalidationAccuracy.accuracy());
+// Print the kappa coefficient
+print('MD kappaPostFire: ', MDvalidationAccuracy.kappa());
+// Print the User's accuracy
+print('MD consumersAccuracy()PostFire', MDvalidationAccuracy.consumersAccuracy());
+// Print the Producer's accuracy
+print('MD producersAccuracy()PostFire', MDvalidationAccuracy.producersAccuracy());
+
+
+//Repeat for RandomForest
+// Get the values for all pixels in each polygon in the validation.
+var RFvalidation = RFclassified.sampleRegions({
+  // Get the sample from the polygons FeatureCollection.
+  collection: validationPostFireFC,
+  // Keep this list of properties from the polygons.
+  properties: ['class'],
+  // Set the scale to get Landsat pixels in the polygons.
+  scale: 30
+});
+print("RFvalidationPostFire",RFvalidation);
+
+
+// Compare the landcover of your validation data against the classification result
+var RFvalidationAccuracy = RFvalidation.errorMatrix('class', 'classification');
+//Print the error matriPostFire ', RFvalidationAccuracy);
+//Print the overall accuracy to the console
+print('RF Overall accuracy:PostFire ', RFvalidationAccuracy.accuracy());
+// Print the kappa coefficient
+print('RF kappa:PostFire ', RFvalidationAccuracy.kappa());
+// Print the User's accuracy
+print('RF consumersAccuracy()PostFire', RFvalidationAccuracy.consumersAccuracy());
+// Print the Producer's accuracy
+print('RF producersAccuracy()PostFire', RFvalidationAccuracy.producersAccuracy());
+
+
+//Query the map: click on the Inspector tab, on the top of the right window. A cross cursor will allow 
+//you to query the map when you click on it. Explore the classes.
+//Show only one class, 
+//var oneclass = BeforeFire.select("cluster").eq(5).selfMask(); //.selfMask() hides all the pixels that don't match the criterion
+//Map.addLayer(oneclass,{},"oneclass");
+
+
+// Add a white background to the image
+// Create an empty image into which to paint white
+Map.addLayer(ee.Image(1), {palette:['ffffff']}, 'white',false);  //false indicates that the image will not be loaded by default
+// select the image 'white' in the Layers pull down menu
+
+
+
+var colortable=['0000FF', '00FF00', '000000', '964B00', '808080', 'FF0000'];
+//Replace class 0, 1, 2… with the labels you have identified
+var names=['Water', 'Forest', 'BareRock', 'Deforestation', 'BareSoil/Urban'];
+
+
+Map.addLayer(RFclassified,{palette: colortable, min:1, max:10},"final result RFPostFire");
+
+
+Map.addLayer(MDclassified,{palette: colortable, min:1, max:10},"final result MDPosttFire", false);
+
+
+
+///
+//////////////////////////////////////////////////
+//Add a Legend to your map
+// Create the panel for the legend items.
+var legend = ui.Panel({
+  style: {
+    position: 'bottom-left',
+    padding: '8px 40px'
+  }
+});
+
+// Create and add the legend title.
+var legendTitle = ui.Label({
+  value: 'Post Caldor Fire',
+  style: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+ margin: '0 0 4px 0',
+    padding: '0'
+  }
+});
+legend.add(legendTitle);
+
+
+var loading = ui.Label('Legend', {margin: '2px 0 4px 0'});
+legend.add(loading);
+
+
+// Creates and styles 1 row of the legend.
+var makeRow = function(color, name) {
+  // Create the label that is actually the colored box.
+  var colorBox = ui.Label({
+    style: {
+      backgroundColor: '#' + color,
+      // Use padding to give the box height and width.
+      padding: '8px',
+      margin: '0 0 4px 0'
+    }
+  });
+
+
+  // Create the label filled with the description text.
+  var description = ui.Label({
+    value: name,
+    style: {margin: '0 0 4px 6px'}
+  });
+
+
+  return ui.Panel({
+    widgets: [colorBox, description],
+    layout: ui.Panel.Layout.Flow('horizontal')
+  });
+};
+
+
+// Get the list of palette colors and class names from the image.
+RFclassified.toDictionary().evaluate(function(result) {
+  loading.style().set('shown', true);
+
+
+  for (var i = 0; i < names.length; i++) {
+    legend.add(makeRow(colortable[i], names[i]));
+  }
+});
+
+
+// Add the legend to the map.
+Map.add(legend);
+
+
+// Export the classified image to Google Drive
+// First, make sure that you are zoomed out to the full extent of the map. The exported crop area will match what you are visualizing.
+// Set the visualization parameters and create a task that you can Run from the Tasks tab.
+var viz = { min:0, max:9, palette:colortable
+};
+Export.image.toDrive({
+  image: RFclassified.visualize(viz),
+  description: 'FinalExportPF',
+  folder: 'GIST58_Lab5',
+region: CaldorFire,
+  scale: 30
+});
